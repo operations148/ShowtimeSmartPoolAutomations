@@ -929,6 +929,8 @@
       if (lastFocused) lastFocused.focus();
     };
 
+    setTimeout(openModal, 10000);
+
     document.querySelectorAll('[data-modal-open]').forEach(el => {
       el.addEventListener('click', (e) => { e.preventDefault(); openModal(); });
       if (el.getAttribute('role') === 'button') {
