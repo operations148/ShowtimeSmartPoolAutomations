@@ -846,26 +846,50 @@
         <p class="relative text-blue-100/80 text-[13.5px] leading-relaxed mt-2">Tell us what you want to control or upgrade. Showtime Pools will follow up with a clear recommendation and scheduling options.</p>
       </div>
       <!-- body -->
-      <form id="modalForm" class="px-7 py-6 grid grid-cols-2 gap-3.5" novalidate>
-        <input class="field" type="text" name="first" placeholder="First Name" aria-label="First Name" required />
-        <input class="field" type="text" name="last" placeholder="Last Name" aria-label="Last Name" required />
-        <input class="field col-span-2" type="tel" name="phone" placeholder="Phone Number" aria-label="Phone Number" required />
-        <input class="field col-span-2" type="email" name="email" placeholder="Email Address" aria-label="Email Address" required />
-        <select class="field col-span-2" name="service" aria-label="Service Needed" required>
-          <option value="" disabled selected>Service Needed</option>
-          <option>Pool Automation Installation</option>
-          <option>Phone App Pool Control</option>
-          <option>Smart Pump Scheduling</option>
-          <option>Heater &amp; Spa Automation</option>
-          <option>Pool Light Automation</option>
-          <option>Equipment Pad Upgrade Planning</option>
-        </select>
-        <button type="submit" class="btn btn-primary col-span-2 w-full mt-1">Request My Automation Consultation</button>
-        <p class="col-span-2 flex items-center justify-center gap-1.5 text-[12px] text-[#7a8593] mt-1 text-center">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0b57a8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
-          No spam. No pressure. Fast response. Scheduling subject to availability.
+      <div class="px-7 py-6">
+        <!-- trust bullets -->
+        <ul class="space-y-3 mb-6">
+          <li class="flex items-center gap-3 text-[14.5px] text-[#2b3543] font-medium">
+            <span class="shrink-0 grid place-items-center w-5 h-5 rounded-full bg-blue-600 text-white"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            Free, no-obligation estimate
+          </li>
+          <li class="flex items-center gap-3 text-[14.5px] text-[#2b3543] font-medium">
+            <span class="shrink-0 grid place-items-center w-5 h-5 rounded-full bg-blue-600 text-white"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            Response within 1 business day
+          </li>
+          <li class="flex items-center gap-3 text-[14.5px] text-[#2b3543] font-medium">
+            <span class="shrink-0 grid place-items-center w-5 h-5 rounded-full bg-blue-600 text-white"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            Upfront pricing before any work begins
+          </li>
+          <li class="flex items-center gap-3 text-[14.5px] text-[#2b3543] font-medium">
+            <span class="shrink-0 grid place-items-center w-5 h-5 rounded-full bg-blue-600 text-white"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            Serving 50+ Los Angeles communities
+          </li>
+        </ul>
+        <!-- primary CTA -->
+        <a href="https://app.showtimepoolmechanics.com/widget/booking/KkBpnBMhT5QXn8YtTsDb" target="_blank" rel="noopener" class="btn btn-primary w-full justify-center gap-2.5">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+          Request My Automation Consultation
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+        <!-- divider -->
+        <div class="flex items-center gap-3 my-4">
+          <div class="flex-1 h-px bg-paper-200"></div>
+          <span class="text-[13px] text-[#8a96a3] font-medium">or</span>
+          <div class="flex-1 h-px bg-paper-200"></div>
+        </div>
+        <!-- call CTA -->
+        <a href="tel:+13234982131" class="btn btn-ghost w-full justify-center gap-2.5">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+          Call (323) 498-2131
+        </a>
+        <!-- trust footer -->
+        <p class="flex items-center justify-center gap-4 text-[12px] text-[#8a96a3] mt-5">
+          <span class="flex items-center gap-1.5"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0b57a8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>No spam</span>
+          <span class="flex items-center gap-1.5"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0b57a8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>No pressure</span>
+          <span class="flex items-center gap-1.5"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0b57a8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Fast response</span>
         </p>
-      </form>
+      </div>
     </div>
   </div>
 
@@ -892,14 +916,12 @@
 
     // ---- Modal ----
     const modal = document.getElementById('modal');
-    const modalForm = document.getElementById('modalForm');
     let lastFocused = null;
     const openModal = () => {
       lastFocused = document.activeElement;
       modal.classList.add('open');
       document.body.classList.add('modal-open');
       setNav(false);
-      setTimeout(() => { const f = modalForm.querySelector('input'); if (f) f.focus(); }, 60);
     };
     const closeModal = () => {
       modal.classList.remove('open');
@@ -916,12 +938,6 @@
     document.getElementById('modalClose').addEventListener('click', closeModal);
     document.getElementById('modalOverlay').addEventListener('click', closeModal);
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
-
-    // ---- Route modal submit to GHL booking calendar ----
-    modalForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      window.location.href = BOOKING_URL;
-    });
 
     // ---- Hero strip + Contact forms POST to GHL webhook ----
     const WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/E4ii6h4R7wnvKtaBaA1l/webhook-trigger/b773f8f2-980c-42b5-a586-32075ecc8a32';
