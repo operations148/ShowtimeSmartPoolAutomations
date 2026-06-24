@@ -1,0 +1,7 @@
+node_modules/
+temporary screenshots/
+*.log
+check-sections.mjs
+screenshot.mjs
+serve.mjs
+frontend-design.md

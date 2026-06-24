@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Showtime Pools | Smart Pool Automation Upgrades in Los Angeles</title>
+  <meta name="description" content="Control your pool from your phone. Showtime Pools upgrades outdated pool controls with smart automation for pumps, heaters, spa, and lights across Los Angeles. Get a clear upgrade recommendation before you buy equipment." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/showtime-logo.png" />
+  <link rel="apple-touch-icon" href="assets/showtime-logo.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            blue: {
+              50:  '#eef5fc',
+              100: '#d7e7f8',
+              500: '#1769c7',
+              600: '#0b57a8',  /* primary CTA */
+              700: '#08407e',
+              800: '#06305f',
+              900: '#051f3d',  /* deep navy */
+            },
+            brand: {
+              red: '#e11b22',
+              reddark: '#b8141a',
+              ink: '#0b0e13',
+              ink2: '#12161d',
+            },
+            paper: {
+              50:  '#f7f9fc',
+              100: '#eef2f7',
+              200: '#dfe6ef',
+            },
+          },
+          fontFamily: {
+            display: ['Anton', 'Impact', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            'blue-lg': '0 18px 40px -12px rgba(11,87,168,0.45), 0 6px 14px -6px rgba(11,87,168,0.35)',
+            'blue-sm': '0 10px 24px -10px rgba(11,87,168,0.40)',
+            'red-lg': '0 18px 40px -12px rgba(225,27,34,0.45)',
+            'soft': '0 24px 60px -24px rgba(7,32,61,0.25), 0 8px 20px -12px rgba(7,32,61,0.12)',
+            'card': '0 14px 36px -20px rgba(7,32,61,0.30)',
+            'float': '0 30px 70px -28px rgba(7,32,61,0.45)',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root {
+      --blue: #0b57a8;
+      --blue-dark: #08407e;
+      --navy: #051f3d;
+      --red: #e11b22;
+      --ink: #0b0e13;
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #141a22; background: #ffffff; -webkit-font-smoothing: antialiased; }
+
+    .font-display { font-family: 'Anton', Impact, sans-serif; font-weight: 400; letter-spacing: -0.015em; line-height: 0.95; }
+
+    /* Mini label */
+    .mini-label {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-weight: 800; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--red);
+    }
+    .mini-label::before { content: ''; width: 28px; height: 3px; background: var(--red); border-radius: 2px; display: inline-block; }
+    .mini-label.center::after { content: ''; width: 28px; height: 3px; background: var(--red); border-radius: 2px; display: inline-block; }
+    .mini-label.on-dark { color: #ff5a60; }
+
+    /* Buttons — only animate transform / box-shadow */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem;
+      font-weight: 800; font-size: 0.95rem; letter-spacing: 0.005em;
+      padding: 0.95rem 1.6rem; border-radius: 0.7rem; cursor: pointer; border: 2px solid transparent;
+      text-align: center; line-height: 1.1;
+      transition: transform 0.28s var(--ease-spring), box-shadow 0.28s var(--ease-out), background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      will-change: transform;
+    }
+    .btn:focus-visible { outline: 3px solid #7fb2ec; outline-offset: 3px; }
+    .btn-primary { background: var(--blue); color: #fff; box-shadow: 0 14px 30px -12px rgba(11,87,168,0.55); }
+    .btn-primary:hover { background: var(--blue-dark); transform: translateY(-3px); box-shadow: 0 22px 44px -14px rgba(11,87,168,0.62); }
+    .btn-primary:active { transform: translateY(-1px) scale(0.99); }
+    .btn-red { background: var(--red); color: #fff; box-shadow: 0 14px 30px -12px rgba(225,27,34,0.55); }
+    .btn-red:hover { background: var(--reddark, #b8141a); transform: translateY(-3px); box-shadow: 0 22px 44px -14px rgba(225,27,34,0.6); }
+    .btn-red:active { transform: translateY(-1px) scale(0.99); }
+    .btn-ghost { background: transparent; color: var(--navy); border-color: #cdd9e7; }
+    .btn-ghost:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-3px); box-shadow: 0 16px 30px -16px rgba(7,32,61,0.35); }
+    .btn-ghost:active { transform: translateY(-1px) scale(0.99); }
+    .btn-white { background:#fff; color: var(--navy); }
+    .btn-white:hover { transform: translateY(-3px); box-shadow: 0 20px 40px -16px rgba(0,0,0,0.4); }
+    .btn-white:active { transform: translateY(-1px) scale(0.99); }
+    .btn-outline-white { background: transparent; color:#fff; border-color: rgba(255,255,255,0.55); }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.12); border-color:#fff; transform: translateY(-3px); }
+    .btn-outline-white:active { transform: translateY(-1px) scale(0.99); }
+
+    /* Noise / grain overlay for dark + colored surfaces */
+    .grain { position: relative; isolation: isolate; }
+    .grain::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0; opacity: 0.5;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+    }
+    .grain > * { position: relative; z-index: 1; }
+
+    /* Image treatment per guardrails */
+    .img-frame { position: relative; overflow: hidden; }
+    .img-frame img { transition: transform 0.7s var(--ease-out); }
+    .img-frame .tint { position:absolute; inset:0; background: #0b57a8; mix-blend-mode: multiply; opacity: 0.10; pointer-events:none; }
+    .img-frame .shade { position:absolute; inset:0; background: linear-gradient(to top, rgba(5,15,30,0.55), rgba(5,15,30,0) 55%); pointer-events:none; }
+    .group:hover .img-frame img, .gallery-card:hover .img-frame img { transform: scale(1.06); }
+
+    /* Hero angled image clip */
+    .hero-clip { clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%); }
+    @media (max-width: 1023px){ .hero-clip { clip-path: none; } }
+
+    /* Diagonal section divider */
+    .skew-panel { transform: skewY(-3deg); }
+    .skew-content { transform: skewY(3deg); }
+
+    /* Reveal on scroll */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce){ .reveal { opacity:1; transform:none; transition:none; } html{scroll-behavior:auto;} }
+
+    /* Header scrolled state */
+    #siteHeader { transition: box-shadow 0.3s ease, background-color 0.3s ease, transform 0.3s ease; }
+    #siteHeader.scrolled { box-shadow: 0 10px 30px -18px rgba(7,32,61,0.4); }
+
+    /* Modal */
+    #modal { transition: opacity 0.3s var(--ease-out), visibility 0.3s; }
+    #modal.open { opacity: 1; visibility: visible; }
+    #modal:not(.open) { opacity: 0; visibility: hidden; }
+    #modal .modal-card { transition: transform 0.4s var(--ease-spring), opacity 0.3s ease; }
+    #modal:not(.open) .modal-card { transform: translateY(26px) scale(0.97); opacity: 0; }
+    #modal.open .modal-card { transform: none; opacity: 1; }
+    body.modal-open { overflow: hidden; }
+
+    .field {
+      width: 100%; padding: 0.8rem 1rem; border-radius: 0.6rem; border: 1.5px solid #d8e0ea;
+      background:#fff; font-size: 0.95rem; color:#141a22; font-family: inherit;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .field::placeholder { color:#9aa6b4; }
+    .field:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 4px rgba(11,87,168,0.12); }
+    select.field { appearance:none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='%235a6675' stroke-width='2.2'%3E%3Cpath d='M3 5l4 4 4-4'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position: right 1rem center; padding-right: 2.4rem; }
+
+    .area-pill { transition: transform 0.22s var(--ease-spring), background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease; cursor: pointer; }
+    .area-pill:hover { transform: translateY(-3px); background: var(--blue); color:#fff; border-color: var(--blue); box-shadow: 0 12px 24px -12px rgba(11,87,168,0.5); }
+    .area-pill.is-active { transform: translateY(-2px); background: var(--blue); color:#fff; border-color: var(--blue); box-shadow: 0 12px 24px -12px rgba(11,87,168,0.5); }
+    .area-pill:focus-visible { outline: 3px solid #7fb2ec; outline-offset: 2px; }
+
+    .svc-card { transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), border-color 0.3s ease; }
+    .svc-card:hover { transform: translateY(-6px); box-shadow: 0 26px 50px -28px rgba(7,32,61,0.45); border-color: #cfe0f3; }
+    .svc-card:hover .svc-icon { transform: translateY(-2px) rotate(-3deg); }
+    .svc-icon { transition: transform 0.4s var(--ease-spring); }
+
+    .gallery-card { transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out); }
+    .gallery-card:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -30px rgba(7,32,61,0.5); }
+  </style>
+</head>
+
+<body>
+  <!-- ============ 1. UTILITY BAR ============ -->
+  <div class="bg-brand-ink text-white/85 text-[13px]">
+    <div class="max-w-7xl mx-auto px-5 md:px-8 h-10 flex items-center justify-between">
+      <p class="flex items-center gap-2 truncate">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ff5a60" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span class="truncate">Smart Pool Automation Upgrades · Serving Greater Los Angeles</span>
+      </p>
+      <div class="flex items-center gap-4">
+        <div class="hidden sm:flex items-center gap-3 text-white/55">
+          <a href="#" aria-label="Facebook" class="hover:text-white transition-colors"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h2.7l.4-3H13V9c0-.9.3-1.5 1.6-1.5H16V4.8c-.3 0-1.2-.1-2.3-.1-2.3 0-3.7 1.3-3.7 3.9V11H7.5v3H10v8h3Z"/></svg></a>
+          <a href="#" aria-label="Instagram" class="hover:text-white transition-colors"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="Google" class="hover:text-white transition-colors"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.9h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.4Z"/><path d="M12 22c2.7 0 5-.9 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3.1v2.6A10 10 0 0 0 12 22Z"/><path d="M6.4 14c-.2-.6-.3-1.3-.3-2s.1-1.4.3-2V7.4H3.1a10 10 0 0 0 0 9.2L6.4 14Z"/><path d="M12 5.9c1.5 0 2.8.5 3.8 1.5l2.8-2.8C16.9 2.9 14.7 2 12 2A10 10 0 0 0 3.1 7.4L6.4 10c.8-2.3 3-4.1 5.6-4.1Z"/></svg></a>
+        </div>
+        <span class="hidden md:inline text-white/40">|</span>
+        <a href="tel:+13234982131" class="flex items-center gap-2 font-bold text-white hover:text-[#ff5a60] transition-colors">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+          (323) 498 2131
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 2. HEADER / NAV ============ -->
+  <header id="siteHeader" class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-paper-200">
+    <div class="max-w-7xl mx-auto px-5 md:px-8 h-[74px] flex items-center justify-between gap-4">
+      <a href="#home" class="flex items-center gap-2.5 shrink-0">
+        <img src="assets/showtime-logo.png" alt="Showtime Pools logo" class="h-[62px] w-auto" />
+        <span class="hidden sm:block leading-tight">
+          <span class="block font-display text-xl text-brand-ink tracking-tight">SHOWTIME POOLS</span>
+          <span class="block text-[11px] font-bold tracking-[0.2em] uppercase text-blue-600">Smart Automation</span>
+        </span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-7 text-[15px] font-semibold text-[#2b3543]">
+        <a href="#home" class="hover:text-blue-600 transition-colors">Home</a>
+        <a href="#about" class="hover:text-blue-600 transition-colors">About Us</a>
+        <a href="#services" class="hover:text-blue-600 transition-colors">Services</a>
+        <a href="#areas" class="hover:text-blue-600 transition-colors">Service Areas</a>
+        <a href="#gallery" class="hover:text-blue-600 transition-colors">Gallery</a>
+        <a href="#reviews" class="hover:text-blue-600 transition-colors">Reviews</a>
+        <a href="#contact" class="hover:text-blue-600 transition-colors">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <a href="tel:+13234982131" class="hidden xl:flex items-center gap-2 font-extrabold text-brand-ink mr-1">
+          <span class="grid place-items-center w-9 h-9 rounded-full bg-blue-50 text-blue-600">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+          </span>
+          <span class="leading-tight text-sm">(323) 498 2131</span>
+        </a>
+        <button type="button" data-modal-open class="btn btn-primary !py-2.5 !px-5 !text-sm hidden sm:inline-flex">Request Service</button>
+        <button type="button" id="navToggle" aria-label="Open menu" aria-expanded="false" class="lg:hidden grid place-items-center w-11 h-11 rounded-lg border border-paper-200 text-brand-ink">
+          <svg id="navIcon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile nav -->
+    <div id="mobileNav" class="lg:hidden hidden border-t border-paper-200 bg-white">
+      <nav class="max-w-7xl mx-auto px-5 py-4 flex flex-col text-[15px] font-semibold text-[#2b3543]">
+        <a href="#home" class="py-2.5 border-b border-paper-100">Home</a>
+        <a href="#about" class="py-2.5 border-b border-paper-100">About Us</a>
+        <a href="#services" class="py-2.5 border-b border-paper-100">Services</a>
+        <a href="#areas" class="py-2.5 border-b border-paper-100">Service Areas</a>
+        <a href="#gallery" class="py-2.5 border-b border-paper-100">Gallery</a>
+        <a href="#reviews" class="py-2.5 border-b border-paper-100">Reviews</a>
+        <a href="#contact" class="py-2.5 border-b border-paper-100">Contact</a>
+        <button type="button" data-modal-open class="btn btn-primary mt-4 w-full">Request Service</button>
+        <a href="tel:+13234982131" class="btn btn-ghost mt-2 w-full">Call (323) 498 2131</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ 3. HERO ============ -->
+    <section id="home" class="relative overflow-hidden bg-paper-50">
+      <!-- atmosphere -->
+      <div class="pointer-events-none absolute inset-0" style="background:
+        radial-gradient(60% 80% at 8% -10%, rgba(11,87,168,0.10), transparent 60%),
+        radial-gradient(50% 70% at 105% 0%, rgba(23,105,199,0.10), transparent 55%),
+        linear-gradient(180deg,#ffffff 0%, #f3f7fc 100%);"></div>
+      <div class="pointer-events-none absolute inset-0 opacity-[0.5]" style="background-image:linear-gradient(rgba(7,32,61,0.045) 1px,transparent 1px),linear-gradient(90deg,rgba(7,32,61,0.045) 1px,transparent 1px);background-size:46px 46px;mask-image:radial-gradient(70% 60% at 30% 30%,#000,transparent);"></div>
+
+      <div class="relative max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-6 items-center pt-12 pb-16 lg:py-20">
+        <!-- LEFT -->
+        <div class="reveal">
+          <span class="mini-label">Smart Pool Automation Upgrades in Los Angeles</span>
+          <h1 class="font-display text-[clamp(2.7rem,7vw,5.1rem)] uppercase text-brand-ink mt-5">
+            Control Your Pool<br><span class="text-blue-600">From Your Phone</span>
+          </h1>
+          <p class="font-display text-[clamp(1.05rem,2.4vw,1.6rem)] uppercase tracking-tight text-[#33414f] mt-3">
+            Smart Automation Upgrades for Pumps, Heaters, Spa &amp; Lights
+          </p>
+          <p class="text-[15.5px] leading-[1.7] text-[#51606f] mt-5 max-w-xl">
+            Stop walking back and forth to the equipment pad. Showtime Pools helps Los Angeles homeowners upgrade outdated pool controls with modern automation options for easier scheduling, heating, lighting, and day-to-day pool control.
+          </p>
+
+          <ul class="mt-6 grid sm:grid-cols-2 gap-x-6 gap-y-3 max-w-xl">
+            <li class="flex items-start gap-2.5 text-[14.5px] font-semibold text-[#2b3543]"><span class="mt-0.5 text-blue-600 shrink-0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Phone control for pool, spa, heater, lights &amp; schedules</li>
+            <li class="flex items-start gap-2.5 text-[14.5px] font-semibold text-[#2b3543]"><span class="mt-0.5 text-blue-600 shrink-0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Upgrade old timers and manual controls</li>
+            <li class="flex items-start gap-2.5 text-[14.5px] font-semibold text-[#2b3543]"><span class="mt-0.5 text-blue-600 shrink-0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Clear recommendation before equipment is installed</li>
+            <li class="flex items-start gap-2.5 text-[14.5px] font-semibold text-[#2b3543]"><span class="mt-0.5 text-blue-600 shrink-0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Local licensed pool equipment professionals</li>
+          </ul>
+
+          <div class="mt-8 flex flex-col sm:flex-row gap-3">
+            <button type="button" data-modal-open class="btn btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M11 18h2"/></svg>
+              Get My Automation Upgrade Consultation
+            </button>
+            <a href="tel:+13234982131" class="btn btn-ghost">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+              Call/Text (323) 498 2131
+            </a>
+          </div>
+
+          <!-- Trust badges -->
+          <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+            <div class="flex items-center gap-2">
+              <div class="flex -space-x-2.5">
+                <span class="w-8 h-8 rounded-full ring-2 ring-white bg-blue-600 text-white grid place-items-center text-[11px] font-bold">JM</span>
+                <span class="w-8 h-8 rounded-full ring-2 ring-white bg-blue-800 text-white grid place-items-center text-[11px] font-bold">AR</span>
+                <span class="w-8 h-8 rounded-full ring-2 ring-white bg-brand-red text-white grid place-items-center text-[11px] font-bold">KT</span>
+              </div>
+              <div class="leading-tight">
+                <div class="flex text-amber-400">★★★★★</div>
+                <p class="text-[12px] font-semibold text-[#51606f]">5.0 · Trusted by LA homeowners</p>
+              </div>
+            </div>
+            <div class="h-9 w-px bg-paper-200 hidden sm:block"></div>
+            <div class="flex items-center gap-2 text-[13px] font-bold text-[#2b3543]">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0b57a8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
+              Licensed &amp; Insured
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT image -->
+        <div class="reveal relative">
+          <div class="absolute -inset-3 lg:-inset-5 bg-blue-900 rounded-[1.6rem] hidden lg:block skew-panel"></div>
+          <div class="absolute -top-4 -right-3 w-24 h-24 bg-brand-red rounded-2xl rotate-12 hidden lg:block opacity-90"></div>
+          <div class="img-frame relative rounded-[1.4rem] shadow-float lg:hero-clip">
+            <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1100&q=80" alt="Modern Los Angeles residential pool with a clean automated equipment setup" class="w-full h-[340px] sm:h-[440px] lg:h-[560px] object-cover" loading="eager" />
+            <div class="tint"></div>
+            <div class="shade"></div>
+          </div>
+          <!-- floating control card -->
+          <div class="absolute left-3 bottom-3 lg:-left-6 lg:bottom-8 bg-white rounded-2xl shadow-float p-4 w-[235px] grain">
+            <div class="flex items-center gap-3">
+              <span class="grid place-items-center w-11 h-11 rounded-xl bg-blue-600 text-white shrink-0">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M10 6h4"/><circle cx="12" cy="16" r="2"/></svg>
+              </span>
+              <div class="leading-tight">
+                <p class="text-[11px] font-bold uppercase tracking-wider text-blue-600">Pool Control</p>
+                <p class="text-sm font-extrabold text-brand-ink">Spa · Heater · Lights</p>
+              </div>
+            </div>
+            <div class="mt-3 flex items-center justify-between text-[12px] font-semibold text-[#51606f]">
+              <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500"></span>System Online</span>
+              <span>One tap away</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4. QUICK SCHEDULE STRIP ============ -->
+    <section class="relative bg-paper-50 pb-16 lg:pb-20">
+      <div class="max-w-7xl mx-auto px-5 md:px-8">
+        <div class="relative bg-blue-900 grain rounded-[1.4rem] shadow-float overflow-hidden">
+          <div class="absolute top-0 right-0 w-72 h-72 bg-blue-600/30 rounded-full blur-3xl"></div>
+          <div class="absolute -bottom-10 -left-6 w-60 h-60 bg-brand-red/20 rounded-full blur-3xl"></div>
+          <div class="relative p-6 md:p-9 grid lg:grid-cols-[0.9fr_2.1fr] gap-6 lg:gap-8 items-center">
+            <div>
+              <span class="mini-label on-dark">Fast &amp; Free</span>
+              <h2 class="font-display text-3xl md:text-[2.4rem] uppercase text-white mt-3">Schedule Your Pool Automation Estimate</h2>
+              <p class="text-blue-100/80 text-sm mt-2 leading-relaxed">Tell us what you'd like to control. We'll follow up with a clear, no-pressure recommendation.</p>
+            </div>
+            <form data-webhook-form class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3" novalidate>
+              <input class="field" type="text" name="name" placeholder="Name" aria-label="Name" />
+              <input class="field" type="tel" name="phone" placeholder="Phone Number" aria-label="Phone Number" />
+              <select class="field" name="service" aria-label="Service Needed">
+                <option value="" disabled selected>Service Needed</option>
+                <option>Pool Automation Installation</option>
+                <option>Phone App Pool Control</option>
+                <option>Smart Pump Scheduling</option>
+                <option>Heater &amp; Spa Automation</option>
+                <option>Pool Light Automation</option>
+                <option>Equipment Pad Upgrade Planning</option>
+              </select>
+              <input class="field" type="email" name="email" placeholder="Email" aria-label="Email" />
+              <textarea class="field sm:col-span-2 lg:col-span-4 resize-y" name="message" rows="2" placeholder="Message" aria-label="Message" style="min-height:2.75rem;"></textarea>
+              <button type="submit" class="btn btn-red sm:col-span-2 lg:col-span-4 w-full">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 5. ABOUT / TRUST ============ -->
+    <section id="about" class="py-20 lg:py-28 bg-white">
+      <div class="max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+        <!-- left image -->
+        <div class="reveal relative order-2 lg:order-1">
+          <div class="absolute -bottom-5 -left-5 w-32 h-32 border-[6px] border-blue-100 rounded-2xl hidden md:block"></div>
+          <div class="img-frame rounded-[1.4rem] shadow-soft">
+            <img src="brand_assets/controller.jpeg" alt="Smart pool automation controller" class="w-full h-[360px] md:h-[480px] object-cover" loading="lazy" />
+            <div class="tint"></div>
+          </div>
+          <!-- stat chip -->
+          <div class="absolute -top-5 right-4 md:right-8 bg-white rounded-2xl shadow-float px-5 py-4 grain">
+            <p class="font-display text-4xl text-blue-600">100%</p>
+            <p class="text-[12px] font-bold uppercase tracking-wider text-[#51606f] leading-tight">Clear plan<br>before you buy</p>
+          </div>
+        </div>
+
+        <!-- right content + dark card -->
+        <div class="reveal order-1 lg:order-2">
+          <span class="mini-label">About Showtime Pools</span>
+          <h2 class="font-display text-[clamp(2.1rem,4.6vw,3.4rem)] uppercase text-brand-ink mt-4">Smart Pool Control Starts With the Right Setup</h2>
+          <p class="text-[15.5px] leading-[1.75] text-[#51606f] mt-5">
+            Pool automation only works well when the equipment, wiring, pump, heater, valves, and control system are reviewed together. Showtime Pools helps homeowners understand what can be automated, what should be upgraded, and what setup makes sense for their pool.
+          </p>
+
+          <div class="grid sm:grid-cols-2 gap-4 mt-7">
+            <div class="flex items-start gap-3">
+              <span class="grid place-items-center w-11 h-11 rounded-xl bg-blue-50 text-blue-600 shrink-0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m14.7 6.3 3 3M3 21l1.5-5.5 11-11a2.1 2.1 0 0 1 3 3l-11 11L3 21Z"/></svg></span>
+              <div><p class="font-extrabold text-brand-ink text-[15px]">Full Pad Review</p><p class="text-[13.5px] text-[#51606f] leading-snug mt-0.5">We assess your existing equipment before recommending anything.</p></div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="grid place-items-center w-11 h-11 rounded-xl bg-blue-50 text-blue-600 shrink-0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11V7a3 3 0 0 1 6 0v4"/><rect x="5" y="11" width="14" height="10" rx="2"/></svg></span>
+              <div><p class="font-extrabold text-brand-ink text-[15px]">No-Pressure Advice</p><p class="text-[13.5px] text-[#51606f] leading-snug mt-0.5">Clear options explained in plain language — no guesswork.</p></div>
+            </div>
+          </div>
+
+          <!-- black CTA card -->
+          <div class="mt-8 bg-brand-ink grain rounded-2xl p-6 md:p-7 flex flex-col sm:flex-row sm:items-center gap-5 justify-between shadow-card">
+            <div>
+              <p class="text-white font-display text-2xl uppercase">Ready to modernize your pool?</p>
+              <p class="text-white/60 text-sm mt-1">Get a clear automation recommendation for your setup.</p>
+            </div>
+            <button type="button" data-modal-open class="btn btn-red shrink-0 w-full sm:w-auto">Learn More About Us</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 6. SERVICES ============ -->
+    <section id="services" class="py-20 lg:py-28 bg-paper-50 relative">
+      <div class="max-w-7xl mx-auto px-5 md:px-8">
+        <div class="reveal max-w-2xl">
+          <span class="mini-label">Our Services</span>
+          <h2 class="font-display text-[clamp(2.2rem,5vw,3.6rem)] uppercase text-brand-ink mt-4">Smart Pool Automation Solutions</h2>
+          <p class="text-[15.5px] leading-[1.7] text-[#51606f] mt-4">From phone control to full equipment-pad planning — practical upgrades built around how you actually use your pool.</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-12">
+          <!-- A -->
+          <div class="svc-card group bg-white rounded-2xl border border-paper-200 p-7 flex flex-col">
+            <span class="svc-icon grid place-items-center w-14 h-14 rounded-xl bg-blue-600 text-white shadow-blue-sm"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/></svg></span>
+            <h3 class="font-extrabold text-xl text-brand-ink mt-5">Pool Automation Installation</h3>
+            <p class="text-[14px] leading-relaxed text-[#51606f] mt-2 flex-1">Install modern automation systems that help control pool equipment, lighting, spa features, and schedules from one convenient system.</p>
+            <button type="button" data-modal-open class="mt-5 inline-flex items-center gap-1.5 font-bold text-blue-600 text-sm">Learn More <svg class="transition-transform duration-300 group-hover:translate-x-1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+          <!-- B -->
+          <div class="svc-card group bg-white rounded-2xl border border-paper-200 p-7 flex flex-col">
+            <span class="svc-icon grid place-items-center w-14 h-14 rounded-xl bg-blue-600 text-white shadow-blue-sm"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M10 6h4"/><circle cx="12" cy="17" r="1.6"/></svg></span>
+            <h3 class="font-extrabold text-xl text-brand-ink mt-5">Phone App Pool Control</h3>
+            <p class="text-[14px] leading-relaxed text-[#51606f] mt-2 flex-1">Control compatible pool functions from your phone, including pump schedules, spa mode, heater settings, and lighting.</p>
+            <button type="button" data-modal-open class="mt-5 inline-flex items-center gap-1.5 font-bold text-blue-600 text-sm">Learn More <svg class="transition-transform duration-300 group-hover:translate-x-1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+          <!-- C -->
+          <div class="svc-card group bg-white rounded-2xl border border-paper-200 p-7 flex flex-col">
+            <span class="svc-icon grid place-items-center w-14 h-14 rounded-xl bg-blue-600 text-white shadow-blue-sm"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M12 2h0M9 2h6"/></svg></span>
+            <h3 class="font-extrabold text-xl text-brand-ink mt-5">Smart Pump Scheduling</h3>
+            <p class="text-[14px] leading-relaxed text-[#51606f] mt-2 flex-1">Upgrade from basic timers to smarter pump scheduling that supports better daily operation and easier control.</p>
+            <button type="button" data-modal-open class="mt-5 inline-flex items-center gap-1.5 font-bold text-blue-600 text-sm">Learn More <svg class="transition-transform duration-300 group-hover:translate-x-1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+          <!-- D -->
+          <div class="svc-card group bg-white rounded-2xl border border-paper-200 p-7 flex flex-col">
+            <span class="svc-icon grid place-items-center w-14 h-14 rounded-xl bg-blue-600 text-white shadow-blue-sm"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s4 4 4 7a4 4 0 0 1-8 0c0-3 4-7 4-7Z"/><path d="M8.5 14a5 5 0 0 0 7 0"/></svg></span>
+            <h3 class="font-extrabold text-xl text-brand-ink mt-5">Heater &amp; Spa Automation</h3>
+            <p class="text-[14px] leading-relaxed text-[#51606f] mt-2 flex-1">Make spa and heater control easier with automation options designed around your pool setup.</p>
+            <button type="button" data-modal-open class="mt-5 inline-flex items-center gap-1.5 font-bold text-blue-600 text-sm">Learn More <svg class="transition-transform duration-300 group-hover:translate-x-1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+          <!-- E -->
+          <div class="svc-card group bg-white rounded-2xl border border-paper-200 p-7 flex flex-col">
+            <span class="svc-icon grid place-items-center w-14 h-14 rounded-xl bg-blue-600 text-white shadow-blue-sm"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 2a6 6 0 0 0-4 10.5c.7.7 1 1.4 1 2.5h6c0-1.1.3-1.8 1-2.5A6 6 0 0 0 12 2Z"/></svg></span>
+            <h3 class="font-extrabold text-xl text-brand-ink mt-5">Pool Light Automation</h3>
+            <p class="text-[14px] leading-relaxed text-[#51606f] mt-2 flex-1">Modernize lighting control for easier on/off scheduling and improved backyard convenience.</p>
+            <button type="button" data-modal-open class="mt-5 inline-flex items-center gap-1.5 font-bold text-blue-600 text-sm">Learn More <svg class="transition-transform duration-300 group-hover:translate-x-1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+          <!-- F -->
+          <div class="svc-card group bg-white rounded-2xl border border-paper-200 p-7 flex flex-col">
+            <span class="svc-icon grid place-items-center w-14 h-14 rounded-xl bg-blue-600 text-white shadow-blue-sm"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.2L3 17.8 6.2 21l6.3-6.3a4 4 0 0 0 5.2-5.4l-2.6 2.6-2.1-2.1 2.7-2.5Z"/></svg></span>
+            <h3 class="font-extrabold text-xl text-brand-ink mt-5">Equipment Pad Upgrade Planning</h3>
+            <p class="text-[14px] leading-relaxed text-[#51606f] mt-2 flex-1">Get a clear review of your existing equipment pad before choosing automation, replacement parts, or upgrades.</p>
+            <button type="button" data-modal-open class="mt-5 inline-flex items-center gap-1.5 font-bold text-blue-600 text-sm">Learn More <svg class="transition-transform duration-300 group-hover:translate-x-1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+        </div>
+
+        <div class="reveal mt-11 flex flex-col sm:flex-row items-center justify-center gap-3 text-center">
+          <p class="text-[15px] font-semibold text-[#51606f]">Not sure which upgrade fits your pool?</p>
+          <button type="button" data-modal-open class="btn btn-primary">Get My Automation Consultation</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 7. GALLERY / PROJECTS ============ -->
+    <section id="gallery" class="py-20 lg:py-28 bg-white">
+      <div class="max-w-7xl mx-auto px-5 md:px-8">
+        <div class="reveal flex flex-col md:flex-row md:items-end justify-between gap-5">
+          <div class="max-w-2xl">
+            <span class="mini-label">Projects</span>
+            <h2 class="font-display text-[clamp(2.2rem,5vw,3.6rem)] uppercase text-brand-ink mt-4">Modern Pool Control Upgrades for LA Homes</h2>
+          </div>
+          <button type="button" data-modal-open class="btn btn-ghost shrink-0">Start Your Upgrade</button>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
+          <!-- 1 -->
+          <article class="gallery-card group rounded-2xl overflow-hidden shadow-card bg-white">
+            <div class="img-frame h-60">
+              <img src="brand_assets/automation.jpeg" alt="Smart pool automation controller upgrade" class="w-full h-full object-cover" loading="lazy" />
+              <div class="tint"></div><div class="shade"></div>
+              <span class="absolute top-3 left-3 text-[11px] font-extrabold uppercase tracking-wider bg-white/95 text-blue-700 px-3 py-1 rounded-full">Smart Automation</span>
+            </div>
+            <div class="p-5"><h3 class="font-extrabold text-brand-ink">Automation Controller Upgrade</h3><p class="text-[13px] text-[#51606f] mt-1">One-tap control for pumps, spa &amp; lights from a single app.</p></div>
+          </article>
+          <!-- 2 -->
+          <article class="gallery-card group rounded-2xl overflow-hidden shadow-card bg-white">
+            <div class="img-frame h-60">
+              <img src="brand_assets/poolequipment.jpeg" alt="Pool equipment pad modernization" class="w-full h-full object-cover" loading="lazy" />
+              <div class="tint"></div><div class="shade"></div>
+              <span class="absolute top-3 left-3 text-[11px] font-extrabold uppercase tracking-wider bg-white/95 text-blue-700 px-3 py-1 rounded-full">Equipment Upgrade</span>
+            </div>
+            <div class="p-5"><h3 class="font-extrabold text-brand-ink">Pool Equipment Pad Modernization</h3><p class="text-[13px] text-[#51606f] mt-1">Outdated timers and controls replaced with a clean setup.</p></div>
+          </article>
+          <!-- 3 -->
+          <article class="gallery-card group rounded-2xl overflow-hidden shadow-card bg-white">
+            <div class="img-frame h-60">
+              <img src="brand_assets/poolspa.jpeg" alt="Smart pool and spa control setup" class="w-full h-full object-cover" loading="lazy" />
+              <div class="tint"></div><div class="shade"></div>
+              <span class="absolute top-3 left-3 text-[11px] font-extrabold uppercase tracking-wider bg-white/95 text-blue-700 px-3 py-1 rounded-full">Pool &amp; Spa Control</span>
+            </div>
+            <div class="p-5"><h3 class="font-extrabold text-brand-ink">Smart Pool/Spa Control Setup</h3><p class="text-[13px] text-[#51606f] mt-1">Switch between pool and spa modes without the equipment pad.</p></div>
+          </article>
+          <!-- 4 -->
+          <article class="gallery-card group rounded-2xl overflow-hidden shadow-card bg-white">
+            <div class="img-frame h-60">
+              <img src="brand_assets/lights.jpeg" alt="Backyard lights and spa automation" class="w-full h-full object-cover" loading="lazy" />
+              <div class="tint"></div><div class="shade"></div>
+              <span class="absolute top-3 left-3 text-[11px] font-extrabold uppercase tracking-wider bg-white/95 text-blue-700 px-3 py-1 rounded-full">Lighting Control</span>
+            </div>
+            <div class="p-5"><h3 class="font-extrabold text-brand-ink">Backyard Lights &amp; Spa Automation</h3><p class="text-[13px] text-[#51606f] mt-1">Scheduled lighting and spa control for easy evening use.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 8. PROCESS (LIGHT GRAY) ============ -->
+    <section class="relative py-20 lg:py-28 bg-paper-100 overflow-hidden">
+      <div class="pointer-events-none absolute inset-0" style="background:
+        radial-gradient(50% 60% at 12% 0%, rgba(11,87,168,0.07), transparent 60%),
+        radial-gradient(45% 60% at 92% 100%, rgba(225,27,34,0.05), transparent 60%);"></div>
+      <div class="pointer-events-none absolute inset-0 opacity-[0.5]" style="background-image:linear-gradient(rgba(7,32,61,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(7,32,61,0.04) 1px,transparent 1px);background-size:46px 46px;mask-image:radial-gradient(70% 60% at 50% 0%,#000,transparent);"></div>
+      <div class="relative max-w-7xl mx-auto px-5 md:px-8">
+        <div class="reveal text-center max-w-2xl mx-auto">
+          <span class="mini-label center justify-center">How We Work</span>
+          <h2 class="font-display text-[clamp(2.2rem,5vw,3.6rem)] uppercase text-brand-ink mt-4">Our Simple Automation Upgrade Process</h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-14">
+          <div class="reveal relative">
+            <span class="font-display text-[5.5rem] leading-none text-blue-900/[0.12]">01</span>
+            <span class="absolute top-2 left-0 w-12 h-1.5 bg-brand-red rounded"></span>
+            <h3 class="font-extrabold text-lg text-brand-ink mt-3">Request Your Consultation</h3>
+            <p class="text-[14px] leading-relaxed text-[#51606f] mt-2">Tell us what you want to control and share photos of your pool equipment if available.</p>
+          </div>
+          <div class="reveal relative">
+            <span class="font-display text-[5.5rem] leading-none text-blue-900/[0.12]">02</span>
+            <span class="absolute top-2 left-0 w-12 h-1.5 bg-brand-red rounded"></span>
+            <h3 class="font-extrabold text-lg text-brand-ink mt-3">We Review Your Current Setup</h3>
+            <p class="text-[14px] leading-relaxed text-[#51606f] mt-2">We check your pump, heater, valves, lighting, timer box, controller, and visible equipment layout.</p>
+          </div>
+          <div class="reveal relative">
+            <span class="font-display text-[5.5rem] leading-none text-blue-900/[0.12]">03</span>
+            <span class="absolute top-2 left-0 w-12 h-1.5 bg-brand-red rounded"></span>
+            <h3 class="font-extrabold text-lg text-brand-ink mt-3">You Get a Clear Automation Plan</h3>
+            <p class="text-[14px] leading-relaxed text-[#51606f] mt-2">We explain what can be automated, what may need to be replaced, and the best option for your pool.</p>
+          </div>
+          <div class="reveal relative">
+            <span class="font-display text-[5.5rem] leading-none text-blue-900/[0.12]">04</span>
+            <span class="absolute top-2 left-0 w-12 h-1.5 bg-brand-red rounded"></span>
+            <h3 class="font-extrabold text-lg text-brand-ink mt-3">Showtime Handles the Upgrade</h3>
+            <p class="text-[14px] leading-relaxed text-[#51606f] mt-2">Our team installs and configures the recommended automation upgrade so your pool is easier to manage.</p>
+          </div>
+        </div>
+
+        <div class="reveal mt-14 flex flex-col items-center gap-3">
+          <p class="text-[#51606f] text-sm">Questions about your setup? Talk to a real person.</p>
+          <a href="tel:+13234982131" class="btn btn-red">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+            Call/Text (323) 498 2131
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 9. SERVICE AREA ============ -->
+    <section id="areas" class="py-20 lg:py-28 bg-paper-50">
+      <div class="max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-2 gap-12 items-center">
+        <div class="reveal">
+          <span class="mini-label">Service Area</span>
+          <h2 class="font-display text-[clamp(2.2rem,5vw,3.6rem)] uppercase text-brand-ink mt-4">Serving Los Angeles Pool Owners</h2>
+          <p class="text-[15.5px] leading-[1.7] text-[#51606f] mt-4 max-w-xl">Local, licensed, and familiar with LA-area pools. If your home is in or around these neighborhoods, we can help you plan a smart automation upgrade.</p>
+
+          <div class="flex flex-wrap gap-2.5 mt-7">
+            <button type="button" data-loc="Los Angeles, CA" aria-pressed="true" class="area-pill is-active text-[13.5px] font-bold text-[#2b3543] bg-white border border-paper-200 rounded-full px-4 py-2">Los Angeles, CA</button>
+            <button type="button" data-loc="Sherman Oaks, CA" aria-pressed="false" class="area-pill text-[13.5px] font-bold text-[#2b3543] bg-white border border-paper-200 rounded-full px-4 py-2">Sherman Oaks, CA</button>
+            <button type="button" data-loc="Beverly Hills, CA" aria-pressed="false" class="area-pill text-[13.5px] font-bold text-[#2b3543] bg-white border border-paper-200 rounded-full px-4 py-2">Beverly Hills, CA</button>
+            <button type="button" data-loc="Bel Air, Los Angeles, CA" aria-pressed="false" class="area-pill text-[13.5px] font-bold text-[#2b3543] bg-white border border-paper-200 rounded-full px-4 py-2">Bel Air, CA</button>
+            <button type="button" data-loc="Brentwood, Los Angeles, CA" aria-pressed="false" class="area-pill text-[13.5px] font-bold text-[#2b3543] bg-white border border-paper-200 rounded-full px-4 py-2">Brentwood, CA</button>
+            <button type="button" data-loc="Encino, Los Angeles, CA" aria-pressed="false" class="area-pill text-[13.5px] font-bold text-[#2b3543] bg-white border border-paper-200 rounded-full px-4 py-2">Encino, CA</button>
+            <button type="button" data-loc="Tarzana, Los Angeles, CA" aria-pressed="false" class="area-pill text-[13.5px] font-bold text-[#2b3543] bg-white border border-paper-200 rounded-full px-4 py-2">Tarzana, CA</button>
+            <button type="button" data-loc="Calabasas, CA" aria-pressed="false" class="area-pill text-[13.5px] font-bold text-[#2b3543] bg-white border border-paper-200 rounded-full px-4 py-2">Calabasas, CA</button>
+            <button type="button" data-loc="Hollywood, Los Angeles, CA" aria-pressed="false" class="area-pill text-[13.5px] font-bold text-[#2b3543] bg-white border border-paper-200 rounded-full px-4 py-2">Hollywood, CA</button>
+            <button type="button" data-loc="Pacific Palisades, Los Angeles, CA" aria-pressed="false" class="area-pill text-[13.5px] font-bold text-[#2b3543] bg-white border border-paper-200 rounded-full px-4 py-2">Pacific Palisades, CA</button>
+          </div>
+
+          <a href="tel:+13234982131" class="btn btn-primary mt-8">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+            (323) 498 2131
+          </a>
+        </div>
+
+        <!-- live interactive google map -->
+        <div class="reveal">
+          <div class="relative rounded-[1.4rem] overflow-hidden shadow-soft border border-paper-200 bg-paper-100 h-[380px] md:h-[440px]">
+            <iframe id="areaMap" title="Showtime Pools service area map — Greater Los Angeles" class="absolute inset-0 w-full h-full" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen src="https://maps.google.com/maps?q=Los%20Angeles%2C%20CA&z=11&output=embed"></iframe>
+            <!-- now-viewing indicator (updates on pill click) -->
+            <div class="absolute left-4 top-4 bg-white/95 backdrop-blur rounded-xl px-4 py-2.5 shadow-float flex items-center gap-2.5 pointer-events-none">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0b57a8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <div class="leading-tight"><p class="text-[10px] font-bold uppercase tracking-wider text-blue-600">Now viewing</p><p id="areaMapLabel" class="text-sm font-extrabold text-brand-ink">Los Angeles, CA</p></div>
+            </div>
+          </div>
+          <p class="text-[12px] text-[#7a8593] mt-3 flex items-center gap-1.5"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>Tap any area above to recenter the map. Drag and zoom to explore.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 10. TESTIMONIALS ============ -->
+    <section id="reviews" class="py-20 lg:py-28 bg-white">
+      <div class="max-w-7xl mx-auto px-5 md:px-8">
+        <div class="reveal text-center max-w-2xl mx-auto">
+          <span class="mini-label center justify-center">Reviews</span>
+          <h2 class="font-display text-[clamp(2.2rem,5vw,3.6rem)] uppercase text-brand-ink mt-4">What Our Clients Say</h2>
+        </div>
+
+        <!-- review cards -->
+        <div class="grid md:grid-cols-3 gap-5 mt-8">
+          <article class="reveal bg-paper-50 border border-paper-200 rounded-2xl p-6">
+            <div class="flex items-center justify-between">
+              <div class="flex text-amber-400 text-lg">★★★★★</div>
+              <svg width="22" height="22" viewBox="0 0 24 24" aria-label="Google review"><path fill="#4285F4" d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.9h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.4Z"/><path fill="#34A853" d="M12 22c2.7 0 5-.9 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3.1v2.6A10 10 0 0 0 12 22Z"/><path fill="#FBBC05" d="M6.4 14c-.2-.6-.3-1.3-.3-2s.1-1.4.3-2V7.4H3.1a10 10 0 0 0 0 9.2L6.4 14Z"/><path fill="#EA4335" d="M12 5.9c1.5 0 2.8.5 3.8 1.5l2.8-2.8C16.9 2.9 14.7 2 12 2A10 10 0 0 0 3.1 7.4L6.4 10c.8-2.3 3-4.1 5.6-4.1Z"/></svg>
+            </div>
+            <p class="text-[14.5px] leading-relaxed text-[#3a4654] mt-4">“Showtime Pools helped us understand what automation made sense for our pool. Now controlling the spa and heater is so much easier.”</p>
+            <div class="flex items-center gap-3 mt-5">
+              <span class="w-10 h-10 rounded-full bg-blue-600 text-white grid place-items-center font-bold text-sm">DM</span>
+              <div class="leading-tight"><p class="font-extrabold text-brand-ink text-sm">Daniel M.</p><p class="text-[12px] text-[#51606f]">Sherman Oaks, CA</p></div>
+            </div>
+          </article>
+          <article class="reveal bg-paper-50 border border-paper-200 rounded-2xl p-6">
+            <div class="flex items-center justify-between">
+              <div class="flex text-amber-400 text-lg">★★★★★</div>
+              <svg width="22" height="22" viewBox="0 0 24 24" aria-label="Google review"><path fill="#4285F4" d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.9h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.4Z"/><path fill="#34A853" d="M12 22c2.7 0 5-.9 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3.1v2.6A10 10 0 0 0 12 22Z"/><path fill="#FBBC05" d="M6.4 14c-.2-.6-.3-1.3-.3-2s.1-1.4.3-2V7.4H3.1a10 10 0 0 0 0 9.2L6.4 14Z"/><path fill="#EA4335" d="M12 5.9c1.5 0 2.8.5 3.8 1.5l2.8-2.8C16.9 2.9 14.7 2 12 2A10 10 0 0 0 3.1 7.4L6.4 10c.8-2.3 3-4.1 5.6-4.1Z"/></svg>
+            </div>
+            <p class="text-[14.5px] leading-relaxed text-[#3a4654] mt-4">“Professional, clear, and easy to work with. They reviewed our equipment and explained the upgrade options without pressure.”</p>
+            <div class="flex items-center gap-3 mt-5">
+              <span class="w-10 h-10 rounded-full bg-blue-800 text-white grid place-items-center font-bold text-sm">RS</span>
+              <div class="leading-tight"><p class="font-extrabold text-brand-ink text-sm">Rebecca S.</p><p class="text-[12px] text-[#51606f]">Encino, CA</p></div>
+            </div>
+          </article>
+          <article class="reveal bg-paper-50 border border-paper-200 rounded-2xl p-6">
+            <div class="flex items-center justify-between">
+              <div class="flex text-amber-400 text-lg">★★★★★</div>
+              <svg width="22" height="22" viewBox="0 0 24 24" aria-label="Google review"><path fill="#4285F4" d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.9h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.4Z"/><path fill="#34A853" d="M12 22c2.7 0 5-.9 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3.1v2.6A10 10 0 0 0 12 22Z"/><path fill="#FBBC05" d="M6.4 14c-.2-.6-.3-1.3-.3-2s.1-1.4.3-2V7.4H3.1a10 10 0 0 0 0 9.2L6.4 14Z"/><path fill="#EA4335" d="M12 5.9c1.5 0 2.8.5 3.8 1.5l2.8-2.8C16.9 2.9 14.7 2 12 2A10 10 0 0 0 3.1 7.4L6.4 10c.8-2.3 3-4.1 5.6-4.1Z"/></svg>
+            </div>
+            <p class="text-[14.5px] leading-relaxed text-[#3a4654] mt-4">“We wanted easier pool control and better scheduling. The team made the process simple from start to finish.”</p>
+            <div class="flex items-center gap-3 mt-5">
+              <span class="w-10 h-10 rounded-full bg-brand-red text-white grid place-items-center font-bold text-sm">AV</span>
+              <div class="leading-tight"><p class="font-extrabold text-brand-ink text-sm">Andre V.</p><p class="text-[12px] text-[#51606f]">Calabasas, CA</p></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="reveal mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <button type="button" data-modal-open class="btn btn-ghost">Leave Us A Review</button>
+          <button type="button" data-modal-open class="btn btn-primary">Get My Automation Consultation</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 11. CONTACT ============ -->
+    <section id="contact" class="py-20 lg:py-28 bg-paper-50">
+      <div class="max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-[1.05fr_0.95fr] gap-10 items-stretch">
+        <!-- form -->
+        <div class="reveal bg-white rounded-[1.4rem] shadow-soft border border-paper-200 p-7 md:p-9">
+          <span class="mini-label">Contact Us</span>
+          <h2 class="font-display text-[clamp(2rem,4.4vw,3rem)] uppercase text-brand-ink mt-4">Speak With Our Pool Automation Experts</h2>
+          <p class="text-[15px] leading-relaxed text-[#51606f] mt-3">Send a few details and we'll follow up with clear next steps and scheduling options.</p>
+          <form data-webhook-form class="grid sm:grid-cols-2 gap-3.5 mt-6" novalidate>
+            <input class="field" type="text" name="fullname" placeholder="Full Name" aria-label="Full Name" />
+            <input class="field" type="tel" name="phone" placeholder="Phone" aria-label="Phone" />
+            <input class="field sm:col-span-2" type="email" name="email" placeholder="Email" aria-label="Email" />
+            <select class="field sm:col-span-2" name="service" aria-label="Service Needed">
+              <option value="" disabled selected>Service Needed</option>
+              <option>Pool Automation Installation</option>
+              <option>Phone App Pool Control</option>
+              <option>Smart Pump Scheduling</option>
+              <option>Heater &amp; Spa Automation</option>
+              <option>Pool Light Automation</option>
+              <option>Equipment Pad Upgrade Planning</option>
+            </select>
+            <textarea class="field sm:col-span-2" name="message" rows="3" placeholder="Message" aria-label="Message"></textarea>
+            <button type="submit" class="btn btn-primary sm:col-span-2 w-full">Send</button>
+          </form>
+        </div>
+
+        <!-- image + info -->
+        <div class="reveal relative">
+          <div class="img-frame rounded-[1.4rem] shadow-soft h-full min-h-[360px]">
+            <img src="https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?auto=format&fit=crop&w=1000&q=80" alt="Premium Los Angeles pool at dusk with automated lighting and equipment" class="w-full h-full object-cover" loading="lazy" />
+            <div class="tint"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-ink/80 via-brand-ink/15 to-transparent"></div>
+          </div>
+          <div class="absolute left-5 right-5 bottom-5 bg-white/95 backdrop-blur rounded-2xl p-5 grain shadow-float">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <a href="tel:+13234982131" class="flex items-center gap-3 group">
+                <span class="grid place-items-center w-11 h-11 rounded-xl bg-blue-600 text-white shrink-0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg></span>
+                <span class="leading-tight"><span class="block text-[11px] font-bold uppercase tracking-wider text-[#51606f]">Call or Text</span><span class="block font-extrabold text-brand-ink group-hover:text-blue-600 transition-colors">(323) 498 2131</span></span>
+              </a>
+              <div class="flex items-center gap-3">
+                <span class="grid place-items-center w-11 h-11 rounded-xl bg-blue-900 text-white shrink-0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+                <span class="leading-tight"><span class="block text-[11px] font-bold uppercase tracking-wider text-[#51606f]">Service Area</span><span class="block font-extrabold text-brand-ink">Greater Los Angeles</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 12. FINAL CTA (DEEP BLUE) ============ -->
+    <section class="relative bg-blue-800 grain overflow-hidden">
+      <div class="pointer-events-none absolute inset-0" style="background:
+        radial-gradient(65% 90% at 10% -10%, rgba(23,105,199,0.65), transparent 60%),
+        radial-gradient(60% 80% at 100% 110%, rgba(4,16,36,0.55), transparent 60%),
+        radial-gradient(45% 60% at 50% -5%, rgba(255,255,255,0.12), transparent 60%);"></div>
+      <div class="relative max-w-7xl mx-auto px-5 md:px-8 py-16 lg:py-20 grid lg:grid-cols-[1.2fr_0.8fr] gap-10 items-center">
+        <div class="reveal">
+          <span class="inline-flex items-center gap-2 text-[12px] font-extrabold uppercase tracking-[0.18em] text-white/85 bg-white/15 rounded-full px-4 py-1.5">Smart Pool Automation</span>
+          <h2 class="font-display text-[clamp(2.4rem,5.5vw,4rem)] uppercase text-white mt-5">Upgrade Your Pool Control With Confidence</h2>
+          <p class="text-white/85 text-[16px] leading-relaxed mt-4 max-w-xl">Get a clear recommendation for smart pool automation, equipment control, and easier day-to-day pool operation.</p>
+          <div class="mt-8 flex flex-col sm:flex-row gap-3">
+            <button type="button" data-modal-open class="btn btn-white">Get My Automation Consultation</button>
+            <a href="tel:+13234982131" class="btn btn-outline-white">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+              Call/Text (323) 498 2131
+            </a>
+          </div>
+        </div>
+        <div class="reveal relative hidden lg:block">
+          <div class="absolute -inset-3 bg-white/10 rounded-[1.6rem] rotate-3"></div>
+          <div class="img-frame relative rounded-[1.4rem] shadow-float rotate-[-3deg]">
+            <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=900&q=80" alt="Luxury Los Angeles backyard pool with smart automation" class="w-full h-[330px] object-cover" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-blue-900/55 to-transparent"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 13. FOOTER ============ -->
+    <footer class="bg-brand-ink grain text-white/70 pt-16 pb-28 lg:pb-10">
+      <div class="max-w-7xl mx-auto px-5 md:px-8">
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+          <div class="lg:pr-6">
+            <div class="flex items-center gap-2.5">
+              <img src="assets/showtime-logo.png" alt="Showtime Pools logo" class="h-[62px] w-auto" />
+              <span class="font-display text-xl text-white tracking-tight">SHOWTIME POOLS</span>
+            </div>
+            <p class="text-[14px] leading-relaxed mt-4 text-white/55">Showtime Pools helps Los Angeles homeowners upgrade, remodel, maintain, and modernize their pools with professional service and clear communication.</p>
+            <div class="flex items-center gap-2.5 mt-5">
+              <a href="#" aria-label="Facebook" class="grid place-items-center w-9 h-9 rounded-lg bg-white/10 hover:bg-blue-600 transition-colors"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h2.7l.4-3H13V9c0-.9.3-1.5 1.6-1.5H16V4.8c-.3 0-1.2-.1-2.3-.1-2.3 0-3.7 1.3-3.7 3.9V11H7.5v3H10v8h3Z"/></svg></a>
+              <a href="#" aria-label="Instagram" class="grid place-items-center w-9 h-9 rounded-lg bg-white/10 hover:bg-blue-600 transition-colors"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg></a>
+              <a href="#" aria-label="Google" class="grid place-items-center w-9 h-9 rounded-lg bg-white/10 hover:bg-blue-600 transition-colors"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.9h5.4a4.6 4.6 0 0 1-5.4 3.4 5.6 5.6 0 0 1 0-11.2c1.5 0 2.8.5 3.8 1.5l2.8-2.8C16.9 2.9 14.7 2 12 2a10 10 0 1 0 9.6 10.2Z"/></svg></a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-extrabold text-white text-sm uppercase tracking-wider">Quick Links</h4>
+            <ul class="mt-4 space-y-2.5 text-[14px]">
+              <li><a href="#home" class="hover:text-white transition-colors">Home</a></li>
+              <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
+              <li><a href="#services" class="hover:text-white transition-colors">Services</a></li>
+              <li><a href="#gallery" class="hover:text-white transition-colors">Gallery</a></li>
+              <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="font-extrabold text-white text-sm uppercase tracking-wider">Services</h4>
+            <ul class="mt-4 space-y-2.5 text-[14px]">
+              <li><button type="button" data-modal-open class="hover:text-white transition-colors text-left">Smart Pool Automation</button></li>
+              <li><button type="button" data-modal-open class="hover:text-white transition-colors text-left">Equipment Installation</button></li>
+              <li><button type="button" data-modal-open class="hover:text-white transition-colors text-left">Pool Remodeling</button></li>
+              <li><button type="button" data-modal-open class="hover:text-white transition-colors text-left">Pool Tile Cleaning</button></li>
+              <li><button type="button" data-modal-open class="hover:text-white transition-colors text-left">Weekly Pool Service</button></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="font-extrabold text-white text-sm uppercase tracking-wider">Contact Info</h4>
+            <ul class="mt-4 space-y-3 text-[14px]">
+              <li class="flex items-start gap-2.5"><svg class="mt-0.5 shrink-0" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#7fb2ec" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg><a href="tel:+13234982131" class="font-bold text-white hover:text-blue-300 transition-colors">(323) 498 2131</a></li>
+              <li class="flex items-start gap-2.5"><svg class="mt-0.5 shrink-0" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#7fb2ec" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span class="text-white/60">Los Angeles, CA · Sherman Oaks · Beverly Hills service area</span></li>
+            </ul>
+            <button type="button" data-modal-open class="btn btn-primary mt-5 !py-2.5 !px-5 !text-sm">Request Service</button>
+          </div>
+        </div>
+
+        <div class="border-t border-white/10 mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[13px] text-white/45">
+          <p>Copyright 2025 Showtime Pools. All rights reserved.</p>
+          <div class="flex items-center gap-5">
+            <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="#" class="hover:text-white transition-colors">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ============ MOBILE STICKY CTA BAR ============ -->
+  <div class="lg:hidden fixed bottom-0 inset-x-0 z-30 bg-white border-t border-paper-200 shadow-[0_-10px_30px_-18px_rgba(7,32,61,0.4)] px-3 py-2.5 flex gap-2.5" style="padding-bottom:calc(0.625rem + env(safe-area-inset-bottom));">
+    <a href="tel:+13234982131" class="btn btn-ghost flex-1 !py-3 !text-sm">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+      Call
+    </a>
+    <button type="button" data-modal-open class="btn btn-primary flex-[1.4] !py-3 !text-sm">Free Consultation</button>
+  </div>
+
+  <!-- ============ MODAL ============ -->
+  <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div id="modalOverlay" class="absolute inset-0 bg-brand-ink/70 backdrop-blur-sm"></div>
+    <div class="modal-card relative w-full max-w-lg bg-white rounded-[1.4rem] shadow-float max-h-[92vh] overflow-y-auto">
+      <!-- header -->
+      <div class="relative bg-blue-900 grain rounded-t-[1.4rem] px-7 pt-7 pb-6 overflow-hidden">
+        <div class="absolute -top-8 -right-6 w-40 h-40 bg-blue-600/30 rounded-full blur-2xl"></div>
+        <div class="absolute -bottom-10 -left-8 w-40 h-40 bg-brand-red/20 rounded-full blur-2xl"></div>
+        <button type="button" id="modalClose" aria-label="Close" class="absolute top-4 right-4 grid place-items-center w-9 h-9 rounded-full bg-white/15 text-white hover:bg-white/25 transition-colors">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+        <div class="relative flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.18em] text-blue-200">
+          <span class="w-6 h-0.5 bg-brand-red rounded"></span> Showtime Pools
+        </div>
+        <h2 id="modalTitle" class="relative font-display text-2xl md:text-[1.8rem] uppercase text-white mt-2 leading-tight">Get My Smart Pool Automation Consultation</h2>
+        <p class="relative text-blue-100/80 text-[13.5px] leading-relaxed mt-2">Tell us what you want to control or upgrade. Showtime Pools will follow up with a clear recommendation and scheduling options.</p>
+      </div>
+      <!-- body -->
+      <form id="modalForm" class="px-7 py-6 grid grid-cols-2 gap-3.5" novalidate>
+        <input class="field" type="text" name="first" placeholder="First Name" aria-label="First Name" required />
+        <input class="field" type="text" name="last" placeholder="Last Name" aria-label="Last Name" required />
+        <input class="field col-span-2" type="tel" name="phone" placeholder="Phone Number" aria-label="Phone Number" required />
+        <input class="field col-span-2" type="email" name="email" placeholder="Email Address" aria-label="Email Address" required />
+        <select class="field col-span-2" name="service" aria-label="Service Needed" required>
+          <option value="" disabled selected>Service Needed</option>
+          <option>Pool Automation Installation</option>
+          <option>Phone App Pool Control</option>
+          <option>Smart Pump Scheduling</option>
+          <option>Heater &amp; Spa Automation</option>
+          <option>Pool Light Automation</option>
+          <option>Equipment Pad Upgrade Planning</option>
+        </select>
+        <button type="submit" class="btn btn-primary col-span-2 w-full mt-1">Request My Automation Consultation</button>
+        <p class="col-span-2 flex items-center justify-center gap-1.5 text-[12px] text-[#7a8593] mt-1 text-center">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0b57a8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
+          No spam. No pressure. Fast response. Scheduling subject to availability.
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const BOOKING_URL = "https://app.showtimepoolmechanics.com/widget/booking/KkBpnBMhT5QXn8YtTsDb";
+
+    // ---- Header scroll state ----
+    const header = document.getElementById('siteHeader');
+    const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // ---- Mobile nav ----
+    const navToggle = document.getElementById('navToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    const navIcon = document.getElementById('navIcon');
+    const setNav = (open) => {
+      mobileNav.classList.toggle('hidden', !open);
+      navToggle.setAttribute('aria-expanded', String(open));
+      navIcon.innerHTML = open ? '<path d="M6 6l12 12M18 6 6 18"/>' : '<path d="M3 6h18M3 12h18M3 18h18"/>';
+    };
+    navToggle.addEventListener('click', () => setNav(mobileNav.classList.contains('hidden')));
+    mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setNav(false)));
+
+    // ---- Modal ----
+    const modal = document.getElementById('modal');
+    const modalForm = document.getElementById('modalForm');
+    let lastFocused = null;
+    const openModal = () => {
+      lastFocused = document.activeElement;
+      modal.classList.add('open');
+      document.body.classList.add('modal-open');
+      setNav(false);
+      setTimeout(() => { const f = modalForm.querySelector('input'); if (f) f.focus(); }, 60);
+    };
+    const closeModal = () => {
+      modal.classList.remove('open');
+      document.body.classList.remove('modal-open');
+      if (lastFocused) lastFocused.focus();
+    };
+
+    document.querySelectorAll('[data-modal-open]').forEach(el => {
+      el.addEventListener('click', (e) => { e.preventDefault(); openModal(); });
+      if (el.getAttribute('role') === 'button') {
+        el.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(); } });
+      }
+    });
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    document.getElementById('modalOverlay').addEventListener('click', closeModal);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+
+    // ---- Route modal submit to GHL booking calendar ----
+    modalForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      window.location.href = BOOKING_URL;
+    });
+
+    // ---- Hero strip + Contact forms POST to GHL webhook ----
+    const WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/E4ii6h4R7wnvKtaBaA1l/webhook-trigger/b773f8f2-980c-42b5-a586-32075ecc8a32';
+    document.querySelectorAll('[data-webhook-form]').forEach(form => {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = form.querySelector('[type="submit"]');
+        const orig = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+        const payload = {};
+        new FormData(form).forEach((v, k) => { payload[k] = v; });
+        try {
+          await fetch(WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+          const isDark = form.closest('.bg-blue-900, [class*="bg-blue-9"]');
+          form.innerHTML = `<div class="col-span-full py-5 text-center">
+            <svg class="mx-auto mb-3" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="${isDark ? '#6ee7b7' : '#059669'}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4 12 14.01l-3-3"/></svg>
+            <p class="font-extrabold text-lg ${isDark ? 'text-white' : 'text-brand-ink'}">Message sent!</p>
+            <p class="text-sm mt-1 ${isDark ? 'text-blue-100/70' : 'text-[#51606f]'}">We'll follow up within 1 business day.</p>
+          </div>`;
+        } catch {
+          btn.disabled = false;
+          btn.textContent = orig;
+          const err = document.createElement('p');
+          err.className = 'col-span-full text-center text-sm text-red-500 mt-1';
+          err.textContent = 'Something went wrong — please call us at (323) 498 2131.';
+          form.appendChild(err);
+        }
+      });
+    });
+
+    // ---- Service area interactive map ----
+    const areaMap = document.getElementById('areaMap');
+    const areaMapLabel = document.getElementById('areaMapLabel');
+    const areaPills = document.querySelectorAll('.area-pill[data-loc]');
+    if (areaMap) {
+      areaPills.forEach((pill) => {
+        pill.addEventListener('click', () => {
+          const loc = pill.dataset.loc;
+          areaMap.src = `https://maps.google.com/maps?q=${encodeURIComponent(loc)}&z=13&output=embed`;
+          if (areaMapLabel) areaMapLabel.textContent = pill.textContent.trim();
+          areaPills.forEach((p) => { p.classList.remove('is-active'); p.setAttribute('aria-pressed', 'false'); });
+          pill.classList.add('is-active');
+          pill.setAttribute('aria-pressed', 'true');
+        });
+      });
+    }
+
+    // ---- Reveal on scroll ----
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
